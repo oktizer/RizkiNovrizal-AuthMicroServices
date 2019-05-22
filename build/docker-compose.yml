@@ -1,0 +1,18 @@
+version: "2"
+services:
+  web:
+    build: ../
+    ports:
+     - "${APP_PORT}:${APP_PORT}"
+    links:
+      - mongodb
+    restart: always
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017/${MONGO_DB}
+    env_file:
+      - configuration
+      - ../environment_variables.env
+  mongodb:
+    image: "mongo"
+    ports:
+    - "${MONGO_PORT}:27017"
