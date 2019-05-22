@@ -5,6 +5,7 @@
 
 module.exports = function (TOOLS, MODULES) {
     const authController = TOOLS.CONTROLLERS.AuthController;
+    const redisController = TOOLS.CONTROLLERS.RedisController;
     const joi = MODULES.JOI;
     const axios = MODULES.AXIOS;
 
@@ -22,12 +23,14 @@ module.exports = function (TOOLS, MODULES) {
                 email: joi.string().required(),
             });
            try{
-               let value = authController.validateInputParams(schema, req.body);
-               let token = await authController(value.email);
-               let response = {
-                   data: token,
-                   message: 'Use Key and Token for API authenticate'
-               }
+               let value = await authController.validateInputParams(schema, req.body);
+               let token = await authController.generateToken(value.email);
+               await redisController.setRedis({key: token.key, Obj:{token: token.token}});
+               // let response = {
+               //     data: token.data,
+               //     message: 'Use Key and Token for API authenticate'
+               // }
+               next(null, token);
            }catch (err) {
                return next (err, null);
            }

@@ -26,6 +26,7 @@ module.exports = function (TOOLS, MODULES) {
                                 reject(errData);
                             } else {
                                 let resultRedis = JSON.parse(resultData);
+                                logger.info('key = ', params.key);
                                 logger.info('Data from redis after save = ', resultRedis);
                                 resolve(resultRedis);
                             }
