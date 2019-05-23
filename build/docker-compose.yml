@@ -6,7 +6,7 @@ services:
      - "${APP_PORT}:${APP_PORT}"
     restart: always
     environment:
-      - REDIS_URL=redis://redis:6379
+      - REDIS_URL=redis://redis:6398
     env_file:
       - configuration
       - ../environment_variables.env
