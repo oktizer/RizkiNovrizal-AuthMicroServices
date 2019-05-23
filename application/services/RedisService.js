@@ -24,7 +24,7 @@ module.exports = function (TOOLS, MODULES, CONSTANTS) {
          */
         saveRedis: function (key, obj, callback) {
             redisClient.set(key, obj, callback);
-            redisClient.expire(key, 1800)
+            redisClient.expire(key, CONSTANTS.VARIABLE.REDIS_EXPIRE);
         },
 
         updateRedis: function (key, obj, callback) {

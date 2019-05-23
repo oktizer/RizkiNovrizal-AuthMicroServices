@@ -28,6 +28,7 @@ module.exports = {
     },
     // Application's constant variables
     VARIABLE: {
-        PAGINATION_LIMIT: 8
+        PAGINATION_LIMIT: 8,
+        REDIS_EXPIRE: 1800
     }
 };

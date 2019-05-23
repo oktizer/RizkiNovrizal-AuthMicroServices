@@ -16,7 +16,7 @@ module.exports = function (TOOLS, MODULES, CONSTANTS) {
             return new Promise((resolve) => {
                 let key = crypto.randomBytes(20).toString('hex');
                 let token = jwtService.generateToken(params);
-                resolve({token: token,key:key});
+                resolve({token: token, key:key, expire: CONSTANTS.VARIABLE.REDIS_EXPIRE});
             });
         },
 

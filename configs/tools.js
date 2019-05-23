@@ -45,9 +45,6 @@ module.exports = function (MODULES, CONSTANTS, callback) {
         // Initialize Redis database
         TOOLS.REDIS_CLIENT = require(CONSTANTS.PATH.REDIS_CLIENT)(MODULES);
 
-        // Initialize mongoose (Mongoose)
-        TOOLS.SCHEMA = require(CONSTANTS.PATH.SCHEMA_LOADER)(MODULES);
-
         console.timeEnd('Loading app tools and database');
 
         callback(null, TOOLS);
