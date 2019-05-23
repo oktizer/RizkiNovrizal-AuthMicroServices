@@ -4,8 +4,6 @@ services:
     build: ../
     ports:
      - "${APP_PORT}:${APP_PORT}"
-    links:
-      - mongodb
     restart: always
     env_file:
       - configuration
