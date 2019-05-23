@@ -3,5 +3,6 @@
 export NODE_ENV=production
 export APP_NAME=Rizkinovrizal-AUTHMicroService
 export APP_PORT=3959
+export REDIS_URL=redis://207.148.79.65:6398
 
 export JWT_SECRET=bDHz544I7VX9gcPoi5lJiuqKGygUBRYPgxXcRIMZ3Qg
