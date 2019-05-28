@@ -1,14 +1,12 @@
 'use strict';
 
 module.exports = function (TOOLS, MODULES, CONSTANTS) {
-    let crudService = TOOLS.SERVICES.CRUDService;
-    let jwtService = TOOLS.SERVICES.JwtService;
-    let joi = MODULES.JOI;
-    let axios = MODULES.AXIOS;
-    let crypto = MODULES.CRYPTO;
+    const jwtService = TOOLS.SERVICES.JwtService;
+    const joi = MODULES.JOI;
+    const crypto = MODULES.CRYPTO;
     return {
         /**
-         * Auth controller for paseto
+         * Controller for generating API token
          * @param param {Object} An object that should contains
          * @param callback {Function} Callback function
          */
@@ -16,10 +14,9 @@ module.exports = function (TOOLS, MODULES, CONSTANTS) {
             return new Promise((resolve) => {
                 let key = crypto.randomBytes(20).toString('hex');
                 let token = jwtService.generateToken(params);
-                resolve({token: token, key:key, expire: CONSTANTS.VARIABLE.REDIS_EXPIRE});
+                resolve({token: token, key: key, expire: CONSTANTS.VARIABLE.REDIS_EXPIRE});
             });
         },
-
 
         /**
          Creator: @rizki
@@ -34,8 +31,7 @@ module.exports = function (TOOLS, MODULES, CONSTANTS) {
                     err ? reject(err) : resolve(value);
                 });
             });
-        },
-
+        }
 
     };
 };

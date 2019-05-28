@@ -2,12 +2,10 @@
  * Created by rizkinovrizal on 17/08/17.
  */
 
-
 module.exports = function (TOOLS, MODULES) {
     const authController = TOOLS.CONTROLLERS.AuthController;
     const redisController = TOOLS.CONTROLLERS.RedisController;
     const joi = MODULES.JOI;
-    const axios = MODULES.AXIOS;
 
     return {
         /**
@@ -20,20 +18,16 @@ module.exports = function (TOOLS, MODULES) {
 
         generateToken: async function (previousData, req, res, next) {
             let schema = joi.object().keys({
-                email: joi.string().required(),
+                email: joi.string().required()
             });
-           try{
-               let value = await authController.validateInputParams(schema, req.body);
-               let token = await authController.generateToken(value.email);
-               await redisController.setRedis({key: token.key, Obj:{token: token.token}});
-               // let response = {
-               //     data: token.data,
-               //     message: 'Use Key and Token for API authenticate'
-               // }
-               next(null, token);
-           }catch (err) {
-               return next (err, null);
-           }
+            try {
+                let value = await authController.validateInputParams(schema, req.body);
+                let token = await authController.generateToken(value.email);
+                await redisController.setRedis({key: token.key, Obj: {token: token.token}});
+                next(null, token);
+            } catch (err) {
+                return next(err, null);
+            }
         }
     };
 };

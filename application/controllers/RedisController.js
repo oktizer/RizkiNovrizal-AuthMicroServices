@@ -57,6 +57,12 @@ module.exports = function (TOOLS, MODULES) {
             });
         },
 
+        /**
+         * Controller for checking if redis key exist or not
+         * @param params {Object} Authentication object contains 'accessToken'
+         * @param callback {Function} Callback function
+         */
+
         existsRedis: function (params) {
             return new Promise((resolve, reject) => {
                 RedisService.existsRedis(params.key, (err, reply) => {
@@ -70,6 +76,11 @@ module.exports = function (TOOLS, MODULES) {
             });
         },
 
+        /**
+         * Controller for delete redis data by key
+         * @param params {Object} Authentication object contains 'accessToken'
+         * @param callback {Function} Callback function
+         */
         deleteRedis: function (params) {
             return new Promise((resolve, reject) => {
                 RedisService.deleteRedis(params.key, (err, result) => {

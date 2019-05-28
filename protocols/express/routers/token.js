@@ -7,7 +7,7 @@ module.exports = [
         fileField: null,
         fileObjArray: 'none',
         handlers: [
-            'AuthInterface.generateToken',
+            'AuthInterface.generateToken'
         ]
-    },
+    }
 ];
