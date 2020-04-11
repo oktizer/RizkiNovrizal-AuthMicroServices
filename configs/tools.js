@@ -50,6 +50,11 @@ module.exports = function (MODULES, CONSTANTS, callback) {
         callback(null, TOOLS);
     }
 
+    function loadRabbitMQ (tools, callback) {
+        // Initialize Rabbit MQ Client
+        require(CONSTANTS.PATH.RABBIT_MQ)(tools, MODULES, callback);
+    }
+
     function loadApplicationLayer (tools, callback) {
         console.time('Loading services, controllers and interfaces');
         // Initialize services
@@ -67,6 +72,7 @@ module.exports = function (MODULES, CONSTANTS, callback) {
 
     MODULES.ASYNC.waterfall([
         loadToolsAndDatabase,
+        loadRabbitMQ,
         loadApplicationLayer
     ], function (err, result) {
         if (err) {

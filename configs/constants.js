@@ -20,7 +20,7 @@ module.exports = {
         MODELS_LOADER: path.join(__dirname, '/../database/sequelize/models/index'),
         PUBLIC_FILE_PATH: 'public',
         REDIS_CLIENT: path.join(__dirname, '/../database/redis/index'),
-        RABBIT_MQ: path.join(__dirname, '/../system/rabbit-mq/client'),
+        RABBIT_MQ: path.join(__dirname, '/../system/rabbit-mq/server'),
         ROUTERS_LOADER: path.join(__dirname, '/../system/express/router'),
         ROUTERS_PATH: path.join(__dirname, '/../protocols/express/routers'),
         SCHEMA_LOADER: path.join(__dirname, '/../database/mongoose/index'),

@@ -4,6 +4,9 @@ module.exports = function (TOOLS, MODULES, CONSTANTS) {
     const jwtService = TOOLS.SERVICES.JwtService;
     const joi = MODULES.JOI;
     const crypto = MODULES.CRYPTO;
+    const rabbitMQService = TOOLS.SERVICES.RabbitMQService;
+
+    let logger = TOOLS.LOG;
     return {
         /**
          * Controller for generating API token
@@ -31,7 +34,24 @@ module.exports = function (TOOLS, MODULES, CONSTANTS) {
                     err ? reject(err) : resolve(value);
                 });
             });
-        }
+        },
 
+        /**
+         * publish message Rabbit MQ(AMQP)
+         * @param params {Object} Parameter object
+         * @param callback {Function} Callback function
+         */
+        publisherMessage: function (params, callback) {
+            rabbitMQService.startPublisher('auth_token', 'fanout', JSON.stringify(params), function (err, result) {
+                if (err) {
+                    err.message = 'Inter-services communication time out, failed send message to other services';
+                    logger.error(err);
+                    callback(err, null);
+                } else {
+                    logger.info('Successfully send message');
+                    callback(null, result);
+                }
+            });
+        }
     };
 };

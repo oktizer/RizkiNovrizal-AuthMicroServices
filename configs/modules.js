@@ -6,6 +6,7 @@
 
 module.exports = {
     ASYNC: require('async'),
+    AMQPLIB: require('amqplib/callback_api'),
     AXIOS: require('axios'),
     BODY_PARSER: require('body-parser'),
     CORS: require('cors'),
